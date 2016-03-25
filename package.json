@@ -1,0 +1,30 @@
+{
+  "name": "immutable-ext",
+  "version": "1.0.0",
+  "description": "fantasyland compatible extensions",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "immutable": "^3.7.6"
+  },
+  "devDependencies": {
+    "daggy": "^0.0.1",
+    "fantasy-identities": "^0.0.1",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha --harmony_destructuring --watch test/**.js"
+  },
+  "keywords": [
+    "functional",
+    "immutable",
+    "monoid",
+    "monad",
+    "applicative",
+    "traversable"
+  ],
+  "author": "drboolean",
+  "license": "ISC"
+}
