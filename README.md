@@ -1,13 +1,18 @@
 # immutable-ext
 fantasyland extensions for immutablejs
 
+# Install
+`npm install immutable-ext`
+
+
+# What is this?
+
 In addition to the Functor, Foldable, and Monad functions, we now have:
  * Monoid
  * Applicative (list only right now)
  * Traversable
 
-Plus stuff that builds off of reduce like `foldMap`.
-
+Plus stuff that builds off of reduce like `foldMap`. Please contribute/complain as you want/need things.
 
 ## Examples
 
