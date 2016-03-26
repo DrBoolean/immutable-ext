@@ -21,6 +21,7 @@ We can now traverse without messing with Array or Object:
 ```js
   const { List, Map } = require('immutable-ext')
   const Task = require('data.task')
+  const IO = require('fantasy-io')
 
 
   // Given Http.get :: String -> Task Error Blog
@@ -37,7 +38,7 @@ We can now traverse without messing with Array or Object:
   // IO(Map({home: "[dom]", faq: "[dom]"})
 ```
 
-We can fold stuff down
+We can `fold` stuff down
 
 ```js
 const {Disjunction, Additive} = require('fantasy-monoids')
