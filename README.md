@@ -69,8 +69,6 @@ Map({a: true, b: false}).foldMap(Disjunction)
 We can `ap` to get us some list comprehensions
 
 ```js
-const add = 
-
 List.of(x => y => x + y)
     .ap(List.of('a', 'b', 'c'))
     .ap(List.of('+', '-'))
