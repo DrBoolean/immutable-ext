@@ -16,27 +16,64 @@ Plus stuff that builds off of reduce like `foldMap`. Please contribute/complain 
 
 ## Examples
 
-We can now traverse without messing with Array:
+We can now traverse without messing with Array or Object:
 
 ```js
-  const { List } = require('immutable-ext')
+  const { List, Map } = require('immutable-ext')
   const Task = require('data.task')
+
+
+  // Given Http.get :: String -> Task Error Blog
 
   List.of('/blog/1', '/blog/2')
     .traverse(Task.of, Http.get)
     .fork(console.error, console.log)
+  // List(Blog, Blog)
 
-  // [Blog1, Blog2]
+
+  Map({home: "<div>homepage</div>", faq: "<p>ask me anything</p>"})
+    .traverse(IO.of, (v, k) => new IO(v => $('body').append(v)))
+
+  // IO(Map({home: "[dom]", faq: "[dom]"})
 ```
 
 We can fold stuff down
 
 ```js
-List.of(Map({a: Sum(1), b: Any(true), c: "son", d: [1], e: 'wut'}),
-        Map({a: Sum(2), b: Any(false), c: "ofa", d: [2]}),
-        Map({a: Sum(3), b: Any(false), c: "gun", d: [3]})).fold(Map.empty),
+const {Disjunction, Additive} = require('fantasy-monoids')
 
-// Map({a: Sum(6), b: Any(true), c: "sonofagun", d: [1,2,3], e: 'wut'})))
+List.of([1,2,3], [4,5,6]).fold([])
+//[1,2,3,4,5,6]
+
+Map({a: "hidy", b: "hidy", c: "ho"}).fold("")
+// "hidyhidyho"
+
+
+List.of(Map({a: Additive(1), b: Disjunction(true), c: "son", d: [1], e: 'wut'}),
+        Map({a: Additive(2), b: Disjunction(false), c: "ofa", d: [2]}),
+        Map({a: Additive(3), b: Disjunction(false), c: "gun", d: [3]})).fold(Map.empty),
+
+// Map({a: Additive(6), b: Disjunction(true), c: "sonofagun", d: [1,2,3], e: 'wut'})))
 ```
 
+`foldMap` some things
 
+```js
+List.of(1,2,3,4).foldMap(Additive)
+// Additive(10)
+
+Map({a: true, b: false}).foldMap(Disjunction)
+// Disjunction(true)
+```
+
+We can `ap` to get us some list comprehensions
+
+```js
+const add = 
+
+List.of(x => y => x + y)
+    .ap(List.of('a', 'b', 'c'))
+    .ap(List.of('+', '-'))
+
+// List('a+', 'a-', 'b+', 'b-', 'c+', 'c-')
+```
