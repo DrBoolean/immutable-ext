@@ -5,8 +5,8 @@ const derived = {
   fold : function(empty) {
     return this.reduce((acc, x) => acc.concat(x), empty)
   },
-  foldMap : function(monoid) {
-    return this.map(x => monoid(x)).fold(monoid.empty)
+  foldMap : function(f, empty) {
+    return this.map(f).fold(empty)
   },
   sequence : function(point) {
     return this.traverse(point, x => x)

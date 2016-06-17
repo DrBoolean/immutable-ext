@@ -1,8 +1,11 @@
 {
   "name": "immutable-ext",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "fantasyland compatible extensions",
   "main": "index.js",
+  "engines": {
+    "node": "6.2.0"
+  },
   "directories": {
     "test": "test"
   },
@@ -15,7 +18,7 @@
     "mocha": "^2.4.5"
   },
   "scripts": {
-    "test": "mocha --harmony_destructuring --watch test/**.js"
+    "test": "mocha --watch test/**.js"
   },
   "keywords": [
     "functional",

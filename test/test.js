@@ -30,7 +30,7 @@ describe("Maps", function() {
 
   it('foldMaps', () =>
     assert.deepEqual(
-      Map({a: 1, b: 1}).foldMap(Sum),
+      Map({a: 1, b: 1}).foldMap(x => Sum(x), Sum.empty),
       Sum(2)))
 
   it('folds (via list)', () =>
@@ -82,6 +82,6 @@ describe("List", function() {
     assert.deepEqual(List.of([1,2,3], [4,5,6]).fold([]), [1,2,3,4,5,6]))
 
   it('foldMaps the list', () =>
-    assert.deepEqual(List.of(1,2,3).foldMap(Sum), Sum(6)))
+    assert.deepEqual(List.of(1,2,3).foldMap(x => Sum(x), Sum.empty), Sum(6)))
 })
 
