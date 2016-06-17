@@ -71,6 +71,7 @@ Map.prototype.sequence = derived.sequence
 // monad
 Map.prototype.chain = Map.prototype.flatMap
 
+window.Immutable = Immutable
 module.exports = Immutable
 
 },{"immutable":2}],2:[function(require,module,exports){
