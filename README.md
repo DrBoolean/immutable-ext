@@ -60,10 +60,10 @@ List.of(Map({a: Additive(1), b: Disjunction(true), c: "son", d: [1], e: 'wut'}),
 `foldMap` some things
 
 ```js
-List.of(1,2,3,4).foldMap(Additive)
+List.of(1,2,3,4).foldMap(Additive, Additive.empty)
 // Additive(10)
 
-Map({a: true, b: false}).foldMap(Disjunction)
+Map({a: true, b: false}).foldMap(Disjunction, Disjunction.empty)
 // Disjunction(true)
 ```
 
