@@ -1,6 +1,6 @@
 {
   "name": "immutable-ext",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "fantasyland compatible extensions",
   "main": "index.js",
   "engines": {
@@ -9,10 +9,11 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "immutable": "^3.7.6"
+  "peerDependencies": {
+    "immutable": "*"
   },
   "devDependencies": {
+    "immutable": "*",
     "daggy": "^0.0.1",
     "fantasy-identities": "^0.0.1",
     "mocha": "^2.4.5"
