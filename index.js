@@ -23,7 +23,7 @@ List.prototype.empty = List.empty
 // traversable
 List.prototype.traverse = function(point, f) {
   return this.reduce((ys, x) =>
-    f(x).map(x => y => y.concat(x)).ap(ys), point(List()))
+    f(x).map(x => y => y.concat([x])).ap(ys), point(List()))
 }
 
 List.prototype.sequence = derived.sequence
