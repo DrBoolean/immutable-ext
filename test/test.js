@@ -81,6 +81,9 @@ describe("List", function() {
   it('folds the list to a value if holding monoids part duex', () =>
     assert.deepEqual(List.of([1,2,3], [4,5,6]).fold([]), [1,2,3,4,5,6]))
 
+  it('works on semigroups (no empty)', () =>
+    assert.deepEqual(List.of([1,2,3], [4,5,6]).fold(), [1,2,3,4,5,6]))
+
   it('foldMaps the list', () =>
     assert.deepEqual(List.of(1,2,3).foldMap(x => Sum(x), Sum.empty), Sum(6)))
 })

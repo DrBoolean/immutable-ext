@@ -3,7 +3,9 @@ const {List, Map} = Immutable
 
 const derived = {
   fold : function(empty) {
-    return this.reduce((acc, x) => acc.concat(x), empty)
+    return empty != null
+           ? this.reduce((acc, x) => acc.concat(x), empty)
+           : this.reduce((acc, x) => acc.concat(x))
   },
   foldMap : function(f, empty) {
     return this.map(f).fold(empty)
