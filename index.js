@@ -3,12 +3,12 @@ const {List, Map} = Immutable
 
 const derived = {
   fold : function(empty) {
-    return empty != null
-           ? this.reduce((acc, x) => acc.concat(x), empty)
-           : this.reduce((acc, x) => acc.concat(x))
+    return this.foldMap(x => x, empty)
   },
   foldMap : function(f, empty) {
-    return this.map(f).fold(empty)
+    return empty != null
+           ? this.reduce((acc, x) => acc.concat(f(x)), empty)
+           : this.reduce((acc, x) => acc.concat(f(x)))
   },
   sequence : function(point) {
     return this.traverse(point, x => x)
