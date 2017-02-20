@@ -25,7 +25,7 @@ List.prototype.empty = List.empty
 // traversable
 List.prototype.traverse = function(point, f) {
   return this.reduce((ys, x) =>
-    f(x).map(x => y => y.concat([x])).ap(ys), point(List()))
+    f(x).map(x => y => y.concat([x])).ap(ys), point(this.empty))
 }
 
 List.prototype.sequence = derived.sequence
@@ -64,7 +64,7 @@ Map.prototype.foldMap = derived.foldMap
 // traverable
 Map.prototype.traverse = function(point, f) {
   return this.reduce((acc, v, k) =>
-    f(v, k).map(x => y => y.merge({[k]: x})).ap(acc), point(Map.empty))
+    f(v, k).map(x => y => y.merge({[k]: x})).ap(acc), point(this.empty))
 }
 
 Map.prototype.sequence = derived.sequence
