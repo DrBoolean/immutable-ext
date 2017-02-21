@@ -1,6 +1,6 @@
 {
   "name": "immutable-ext",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "fantasyland compatible extensions",
   "main": "index.js",
   "engines": {

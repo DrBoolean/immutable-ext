@@ -4,10 +4,12 @@ const {List, Map} = Immutable
 
 const derived = {
   fold : function(empty) {
-    return this.reduce((acc, x) => acc.concat(x), empty)
+    return this.foldMap(x => x, empty)
   },
   foldMap : function(f, empty) {
-    return this.map(f).fold(empty)
+    return empty != null
+           ? this.reduce((acc, x) => acc.concat(f(x)), empty)
+           : this.reduce((acc, x) => acc.concat(f(x)))
   },
   sequence : function(point) {
     return this.traverse(point, x => x)
@@ -24,7 +26,7 @@ List.prototype.empty = List.empty
 // traversable
 List.prototype.traverse = function(point, f) {
   return this.reduce((ys, x) =>
-    f(x).map(x => y => y.concat(x)).ap(ys), point(List()))
+    f(x).map(x => y => y.concat([x])).ap(ys), point(this.empty))
 }
 
 List.prototype.sequence = derived.sequence
@@ -63,7 +65,7 @@ Map.prototype.foldMap = derived.foldMap
 // traverable
 Map.prototype.traverse = function(point, f) {
   return this.reduce((acc, v, k) =>
-    f(v, k).map(x => y => y.merge({[k]: x})).ap(acc), point(Map.empty))
+    f(v, k).map(x => y => y.merge({[k]: x})).ap(acc), point(this.empty))
 }
 
 Map.prototype.sequence = derived.sequence
@@ -71,7 +73,6 @@ Map.prototype.sequence = derived.sequence
 // monad
 Map.prototype.chain = Map.prototype.flatMap
 
-window.Immutable = Immutable
 module.exports = Immutable
 
 },{"immutable":2}],2:[function(require,module,exports){
