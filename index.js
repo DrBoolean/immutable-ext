@@ -61,7 +61,7 @@ Map.prototype.empty = Map.empty
 Map.prototype.fold = derived.fold
 Map.prototype.foldMap = derived.foldMap
 
-// traverable
+// traversable
 Map.prototype.traverse = function(point, f) {
   return this.reduce((acc, v, k) =>
     f(v, k).map(x => y => y.merge({[k]: x})).ap(acc), point(this.empty))
