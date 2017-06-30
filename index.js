@@ -8,7 +8,7 @@ const derived = {
   foldMap : function(f, empty) {
     return empty != null
            ? this.reduce((acc, x) => acc.concat(f(x)), empty)
-           : this.reduce((acc, x) => acc.concat(f(x)))
+           : this.map(f).reduce((acc, x) => acc.concat(x))
   },
   sequence : function(point) {
     return this.traverse(point, x => x)
