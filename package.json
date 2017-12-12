@@ -3,6 +3,10 @@
   "version": "1.1.2",
   "description": "fantasyland compatible extensions",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
   "engines": {
     "node": ">=6.2.0"
   },
