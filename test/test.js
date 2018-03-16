@@ -92,7 +92,7 @@ describe("List", function() {
     assert.deepEqual(List.of(1,2,3).foldMap(x => Sum(x), Sum.empty), Sum(6)))
 
   it('extends the list', () =>
-    assert.deepEqual(List.of(1,2,3).extend(xs => xs.toJS()), List.of([1], [1, 2], [1,2,3]))
+    assert.deepEqual(List.of(1,2,3).extend(xs => xs.toJS()).toJS(), List.of([1, 2, 3], [2, 3], [3]).toJS())
   )
 })
 

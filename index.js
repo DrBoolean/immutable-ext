@@ -44,7 +44,7 @@ List.prototype.chain = List.prototype.flatMap;
 
 // comonad#extend - extract needs list to be non empty
 List.prototype.extend = function(f) {
-  return this.map((x, i) => f(this.slice(0, i+1)))
+  return this.map((x, i) => f(this.slice(i)))
 }
 
 
