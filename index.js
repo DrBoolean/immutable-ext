@@ -42,6 +42,10 @@ List.prototype.ap = function(other) {
 // monad
 List.prototype.chain = List.prototype.flatMap;
 
+// comonad#extend - extract needs list to be non empty
+List.prototype.extend = function(f) {
+  return this.map((x, i) => f(this.slice(0, i+1)))
+}
 
 
 // Map
@@ -71,5 +75,10 @@ Map.prototype.sequence = derived.sequence
 
 // monad
 Map.prototype.chain = Map.prototype.flatMap
+
+// comonad#extend - extract needs to be paired with a key
+Map.prototype.extend = function(f) {
+  return this.map(_value => f(this))
+}
 
 module.exports = Immutable

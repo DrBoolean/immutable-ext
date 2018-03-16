@@ -55,6 +55,10 @@ describe("Maps", function() {
     assert.deepEqual(
       Map({a: Identity.of(2), b: Identity.of(3)}).sequence(Identity.of),
       Identity.of(Map({a: 2, b: 3}))))
+
+  it('extends the map', () =>{
+    assert.deepEqual(Map({a: 1, b: 2}).extend(m => m.get('a') + m.get('b')), Map({a: 3, b: 3}))
+  })
 })
 
 describe("List", function() {
@@ -86,5 +90,9 @@ describe("List", function() {
 
   it('foldMaps the list', () =>
     assert.deepEqual(List.of(1,2,3).foldMap(x => Sum(x), Sum.empty), Sum(6)))
+
+  it('extends the list', () =>
+    assert.deepEqual(List.of(1,2,3).extend(xs => xs.foldMap(x => Sum(x), Sum.empty).val), List.of(1, 3, 6))
+  )
 })
 
