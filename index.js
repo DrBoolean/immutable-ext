@@ -78,7 +78,7 @@ Map.prototype.chain = Map.prototype.flatMap
 
 // comonad#extend - extract needs to be paired with a key
 Map.prototype.extend = function(f) {
-  return this.map(_value => f(this))
+  return this.map(_ => f(this))
 }
 
 module.exports = Immutable
